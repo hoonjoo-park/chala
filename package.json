@@ -10,7 +10,7 @@
     "start": "node build/server.js",
     "build": "npm run build:server && npm run build:assets",
     "build:server": "babel src -d build",
-    "build:assets": "webpack --mode=development -w",
+    "build:assets": "webpack --mode=production -w",
     "dev": "nodemon --exec babel-node src/server.js",
     "assets": "webpack --config webpack.config.js"
   },
