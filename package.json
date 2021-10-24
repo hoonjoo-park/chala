@@ -34,7 +34,8 @@
     "multer": "^1.4.3",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "webpack": "^5.59.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
@@ -47,7 +48,6 @@
     "sass": "^1.43.2",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.1",
-    "webpack": "^5.59.1",
     "webpack-cli": "^4.9.1"
   }
 }
