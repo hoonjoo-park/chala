@@ -10,9 +10,9 @@
     "start": "node build/server.js",
     "build": "npm run build:server && npm run build:assets",
     "build:server": "babel src -d build",
-    "build:assets": "webpack --mode=production -w",
+    "build:assets": "webpack --mode=production",
     "dev": "nodemon --exec babel-node src/server.js",
-    "assets": "webpack --config webpack.config.js"
+    "assets": "webpack --config webpack.config.js -w"
   },
   "author": "HoonJoo Park",
   "license": "ISC",
