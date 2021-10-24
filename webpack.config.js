@@ -9,7 +9,6 @@ module.exports = {
     videoPlayer: BASE_JS + 'videoPlayer.js',
     commentBox: BASE_JS + 'commentBox.js',
   },
-  // 아직 개발 단계일 떄에는 development, 배포 단계일 때에는 product
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/styles.css',
@@ -23,7 +22,6 @@ module.exports = {
   module: {
     rules: [
       {
-        // 모든 .js파일을 대상으로!
         test: /\.js$/,
         use: {
           loader: 'babel-loader',
