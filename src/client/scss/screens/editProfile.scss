@@ -1,0 +1,75 @@
+.editProfileBox {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 75vh;
+  margin: auto;
+  transform: translateY(8%);
+  & > h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0 1rem 0;
+  }
+  & > hr {
+    width: 4rem;
+    height: 2px;
+    border: none;
+    background-color: #374251;
+  }
+  & > img {
+    margin: 0 auto;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+  }
+  & > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 70%;
+    & > input:not([type='submit']) {
+      outline: none;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #d1d1d1d1;
+      color: #ffffff;
+      font-size: 1.1rem;
+      width: 70%;
+      height: 2.5rem;
+    }
+    & > input[type='submit'] {
+      width: 70%;
+      height: 2.5rem;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 1rem 0;
+      background-color: #3f72af;
+      color: #ffffff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+.otherEditBox {
+  display: flex;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: 0 auto;
+  & > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 30%;
+    border-radius: 5px;
+  }
+  & > a:nth-child(1) {
+    background-color: #f38181;
+  }
+  & > a:nth-child(2) {
+    border: 1px solid #ff0000;
+    color: #ff0000;
+  }
+}

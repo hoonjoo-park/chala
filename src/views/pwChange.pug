@@ -1,0 +1,13 @@
+extends base.pug
+
+block contents
+    div.pwChangeBox
+        h1 비밀번호 변경
+        hr
+        if errorMsg
+            h3 #{errorMsg}
+        form(method="post")
+            input(type="password", name="password" placeholder="현재 비밀번호를 입력해주세요")
+            input(type="password", name="newPassword" placeholder="새로운 비밀번호를 입력해주세요")
+            input(type="password", name="newPassword2" placeholder="비밀번호를 다시 입력해주세요")
+            input(type="submit", value="완료")

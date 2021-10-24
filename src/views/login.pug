@@ -1,0 +1,20 @@
+extends base.pug
+
+block contents
+    div.login
+        h1 로그인
+        hr
+        if errorMsg
+            h3 #{errorMsg}
+        form(action="/login", method="POST")
+            input(type="text", name="userID", id="userID", placeholder="아이디를 입력해주세요")
+            input(type="password", name="password", id="password", placeholder="비밀번호를 입력해주세요")
+            input(type="submit", value="로그인")
+            div
+                a(href="/user/github/login" class="gitHubLogin") <i class="fab fa-github"></i> Github으로 로그인하기
+        div.forgotBox
+            span 비밀번호를 잊으셨나요?
+            a(href="/user/findpw" class="findPW") 비밀번호 찾기
+        div.askJoinBox
+            span 아직 회원이 아니신가요?
+            a(href="/join" class="joinLink") 회원가입

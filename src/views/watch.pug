@@ -1,0 +1,41 @@
+extends base.pug
+
+block contents
+    div#videoContainer(data-id=content._id)
+        video(src="/"+content.contentFile)
+        div#videoControls.videoControls
+            div.videoControls__play
+                span#play.videoControls__playBtn
+                    i.fas.fa-play
+                div.videoControls__time
+                    span#currenTime 00:00
+                    span  / 
+                    span#totalTime 00:00
+            input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
+            div.videoControls__volume
+                input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
+                span#mute
+                    i.fas.fa-volume-up
+            div
+                span#fullScreen
+                    i.fas.fa-expand
+
+    div.video__data
+        p.video__title=content.contentTitle
+        p.video__desc=content.contentDesc
+        small.video__owner 작성자  
+            a(href=`/users/${content.owner._id}`)=content.owner.userName
+        if String(content.owner._id) === String(loggedInUser._id)
+            div#editBox
+                a(href=`${content.id}/edit`, id="editVideo") 수정
+                a(href=`${content.id}/delete`, id="deleteVideo") 삭제
+    //- if loggedIn
+    //-     div.video__add-comments
+    //-         form.video__comment-form#commentForm
+    //-             textarea(placeholder="댓글 내용을 입력해주세요", id="commentTextarea")
+    //-             button 작성
+
+block scripts
+    script(src="/static/js/videoPlayer.js")
+    if loogedIn
+        script(src="/static/js/commentBox.js") 

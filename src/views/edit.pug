@@ -1,0 +1,10 @@
+extends base.pug
+
+block contents
+    div.editContentBox
+        h1 컨텐츠 수정
+        hr
+        form(method="POST") 
+            input(type="text", name="contentName", placeholder="제목을 입력해주세요")
+            textarea(name="description", placeholder="컨텐츠에 대한 설명을 입력해주세요")
+            input(type="submit", value="업로드")

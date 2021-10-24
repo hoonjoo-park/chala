@@ -1,0 +1,12 @@
+extends base.pug
+
+block contents
+    div.withdrawBox
+        h1 회원 탈퇴
+        hr
+        if errorMsg
+            h3 #{errorMsg}
+        form(method="post")
+            input(type="text", name="userID", placeholder="아이디")
+            input(type="password", name="password", placeholder="비밀번호")
+            input(type="submit", value="회원탈퇴")

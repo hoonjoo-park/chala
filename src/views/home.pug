@@ -1,0 +1,33 @@
+extends base.pug
+include mixins/contents
+
+block contents
+        if loggedIn
+            div#homeBanner
+                div.leftBanner
+                    img(src="/"+loggedInUser.profileImg, alt="profile", width="95",height="95")
+                div.rightBanner
+                    h1 #{loggedInUser.userName}
+                    p This blank is for description of users themselves.
+                div.buttonBox
+                    a(href="/content/upload") 업로드
+            div.gridBox
+                if contents.length > 0
+                    each content in contents
+                        +contents(content)
+                else
+                    h1.nothing 아직 등록된 찰나의 기록이 없습니다.
+        else
+            div.defaultBox
+                div.infoBox
+                    h1 찰나,
+                    h1 내 삶을 하이라이팅하다.
+                    p 우리는 무심코 소중한 찰나의 순간들을 놓치며 바쁘게 살아갑니다. <br> 당연하게만 여겨왔던 놓치기 아쉬운 하루의 단편들을  찰나에 기록해보세요.
+                    div.imgBox
+                        img(src="/images/banner2.jpeg" alt="banner")
+                        img(src="/images/banner1.jpeg" alt="banner")
+                        img(src="/images/banner3.jpeg" alt="banner")
+                div.loginBox
+                    img(src="/images/maple.png", alt="maple", width="50",height="50")
+                    a(href="/login" id="homeLogin") 로그인
+                    a(href="/join" id="homeJoin") 회원가입

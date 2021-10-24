@@ -1,0 +1,33 @@
+div.navBox
+    div.logo
+        img(src="/images/maple.png", alt="maple", width="30", height="30")
+        a(href="/") CHALA
+    ul.menuBox
+        li 
+            a(href="/") Home
+        li 
+            a(href="/search") Search
+
+        if loggedIn
+            if loggedInUser.profileImg
+                li#navProfile
+                    img(src="/"+loggedInUser.profileImg, alt="profile", width="35",height="35")
+                    ul.profileSub
+                        li #{loggedInUser.userName}
+                        li 
+                            a(href="/user/logout") 로그아웃
+                        li
+                            a(href="/user/edit") 프로필 수정
+            else
+                i.fas.fa-user-circle
+                li #{loggedInUser.userName}
+                li.loginJoin
+                    a(href="/user/logout") 로그아웃
+                li
+                    a(href="/user/edit") 프로필 수정
+            
+        else
+            li 
+                a(href="/login") 로그인
+                a(href="/join") 회원가입
+        

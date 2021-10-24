@@ -1,0 +1,17 @@
+footer {
+  display: flex;
+  align-items: center;
+  height: 20vh;
+  min-height: 100px;
+  width: 100vw;
+  border-top: 1px solid #d1d1d1d1;
+}
+.footerInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 7.5vw;
+  & > h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.3rem;
+  }
+}

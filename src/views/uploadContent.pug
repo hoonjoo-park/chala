@@ -1,0 +1,54 @@
+extends base.pug
+
+block contents
+    div.uploadContentBox
+        h1 컨텐츠 업로드
+        hr
+        div#buttonBox
+            a(href="/content/upload?option=local", id="localBtn") 
+                <i class="fas fa-folder-plus"></i>
+                span 파일 업로드 
+            a(href="/content/upload?option=take", id="cameraBtn") 
+                <i class="fas fa-camera"></i>
+                span 촬영하기
+    if localModal
+        div#modalBG
+            div#modalBox
+                h1 파일 업로드
+                a(href="/content/upload")
+                form(method="POST" enctype="multipart/form-data") 
+                    input(type="text", name="contentName", placeholder="제목을 입력해주세요")
+                    textarea(name="description", placeholder="컨텐츠에 대한 설명을 입력해주세요")
+                    div.fileBox
+                        div
+                            input(type="text", disabled=true, value="컨텐츠", id="fileLabel")
+                            label(for="contentFile") 불러오기
+                            input(type="file", name="contentFile", id="contentFile", accept="video/*,image/*")
+                        div
+                            input(type="text", disabled=true, value="썸네일", id="thumbLabel")
+                            label(for="thumbFile") 불러오기
+                            input(type="file", name="thumbFile", id="thumbFile", accept="image/*")
+                    input(type="submit", value="업로드")
+    else if cameraModal
+        div#modalBG
+            div#modalBox
+                h1 촬영하기
+                a(href="/content/upload")
+                div#videoBox
+                    video(src="/" controls, id="videoPreview") 
+                    button#shootBtn 촬영하기
+                form(method="POST" enctype="multipart/form-data")
+                    div.fileBox
+                        div
+                            input(type="text", disabled=true, value="컨텐츠", id="fileLabel")
+                            label(for="contentFile") 불러오기
+                            input(type="file", name="contentFile", id="contentFile", accept="video/*,image/*")
+                        div
+                            input(type="text", disabled=true, value="썸네일", id="thumbLabel")
+                            label(for="thumbFile") 불러오기
+                            input(type="file", name="thumbFile", id="thumbFile", accept="image/*")
+                    input(type="text", name="contentName", placeholder="제목을 입력해주세요")
+                    textarea(name="description", placeholder="컨텐츠에 대한 설명을 입력해주세요")
+                    input(type="submit", value="업로드")
+block scripts
+    script(src="/static/js/camera.js")

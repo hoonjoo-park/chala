@@ -1,0 +1,131 @@
+.video__data {
+  margin-top: 20px;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  & > .video__title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  & > .video__desc {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+  & > .video__owner {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    a {
+      font-size: 1rem;
+      color: #62d2a2;
+    }
+  }
+}
+#editBox {
+  display: flex;
+  width: 30%;
+  margin: 2rem 0;
+  & > #editVideo,
+  #deleteVideo {
+    border-radius: 5px;
+    margin-right: 2rem;
+    display: inline-block;
+    text-align: center;
+    width: 5rem;
+    padding: 1em;
+  }
+  & > #editVideo {
+    border: 1px solid #3f72af;
+    color: #3f72af;
+  }
+  & > #deleteVideo {
+    border: 1px solid #f38181;
+    color: #f38181;
+  }
+}
+.video__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  .video__comment {
+    padding: 10px;
+    border-radius: 9999px;
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+  }
+}
+.video__add-comments {
+  border: 1px solid #eaeaea;
+  height: 8rem;
+}
+#commentTextarea {
+  resize: none;
+  outline: none;
+  min-width: 500px;
+  width: 70%;
+}
+
+#videoContainer {
+  width: 100%;
+  position: relative;
+  margin-top: 5rem;
+  video {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .videoControls {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    &.showing {
+      opacity: 1;
+    }
+    align-items: center;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr auto;
+    gap: 10px;
+    justify-content: space-between;
+    background-color: #0f1117;
+    padding: 10px;
+    left: 0;
+    box-sizing: border-box;
+    .videoControls__play {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .videoControls__playBtn {
+        margin: 0px 15px;
+      }
+      .videoControls__time {
+        font-size: 12px;
+      }
+    }
+    .videoControls__volume {
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 10px;
+        i {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+#fullScreen {
+  & > i {
+    font-size: 1.3rem;
+    width: 2rem;
+    vertical-align: middle;
+    padding-top: 0.1em;
+  }
+}

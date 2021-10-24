@@ -1,0 +1,21 @@
+extends base.pug
+
+block contents
+    div.join
+        h1 회원가입
+        hr
+        if errorMsg
+            h3 #{errorMsg}
+        form(action="/join" method="POST") 
+            input(type="text", name="userName", placeholder="이름을 입력해주세요") 
+            input(type="text", name="userID", placeholder="아이디를 입력해주세요")
+            input(type="password", name="password", placeholder="비밀번호를 입력해주세요")
+            input(type="password", name="password2", placeholder="비밀번호를 다시 입력해주세요")
+            if socialJoin
+                input(type="email", name="email", value= socialJoin, readonly)
+            else
+                input(type="email", name="email", placeholder="이메일을 입력해주세요")
+            input(type="submit", value="회원가입")
+        div.askLoginBox
+            span 이미 회원이신가요?
+            a(href="/login") 로그인

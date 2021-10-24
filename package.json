@@ -1,0 +1,53 @@
+{
+  "name": "chala",
+  "version": "1.0.0",
+  "description": "Save your best moment of the day",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoonjoo-park/chala.git"
+  },
+  "scripts": {
+    "start": "node build/server.js",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=development -w",
+    "dev": "nodemon --exec babel-node src/server.js",
+    "assets": "webpack --config webpack.config.js"
+  },
+  "author": "HoonJoo Park",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoonjoo-park/chala/issues"
+  },
+  "homepage": "https://github.com/hoonjoo-park/chala#readme",
+  "dependencies": {
+    "@ffmpeg/core": "^0.8.5",
+    "@ffmpeg/ffmpeg": "^0.9.7",
+    "babel-loader": "^8.2.3",
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.11",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "node-fetch": "^2.6.1",
+    "pug": "^3.0.2",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "css-loader": "^6.4.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "nodemon": "^2.0.12",
+    "sass": "^1.43.2",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1"
+  }
+}

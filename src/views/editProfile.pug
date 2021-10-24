@@ -1,0 +1,23 @@
+extends base.pug
+
+block contents
+    div.editProfileBox
+        if errorMsg
+            h1 #{errorMsg}
+        else
+            h1 프로필 수정
+        hr
+        if loggedInUser.profileImg 
+            img(src="/"+loggedInUser.profileImg, alt="profile", width="50", height="50")
+        else
+            i.fas.fa-user-circle
+        form(method="post", enctype="multipart/form-data")
+            input(type="file", name="profileImg" id="profileImg" accept="image/*")
+            input(type="text", name="userName" value=loggedInUser.userName placeholder="이름을 입력해주세요")
+            input(type="text", name="userID" value=loggedInUser.userID placeholder="아이디를 입력해주세요")
+            input(type="email", name="email" value=loggedInUser.email placeholder="이메일을 입력해주세요")
+            input(type="password", name="password" placeholder="인증을 위해 비밀번호를 입력해주세요")
+            input(type="submit", value="완료")
+        div.otherEditBox
+            a(href="/user/pwchange") 비밀번호 변경
+            a(href="/user/withdraw") 회원 탈퇴

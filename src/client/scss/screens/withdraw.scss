@@ -1,0 +1,49 @@
+.withdrawBox {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 55vh;
+  margin: auto;
+  transform: translateY(28%);
+  & > h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0 1rem 0;
+  }
+  & > hr {
+    width: 4rem;
+    height: 2px;
+    border: none;
+    background-color: #374251;
+  }
+  & > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90%;
+    & > input:not([type='submit']) {
+      outline: none;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #d1d1d1d1;
+      color: #ffffff;
+      font-size: 1.1rem;
+      width: 70%;
+      height: 2.5rem;
+    }
+    & > input[type='submit'] {
+      width: 70%;
+      height: 2.5rem;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 1rem 0;
+      color: #ff0000;
+      border: 2px solid #ff0000;
+      background-color: transparent;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}

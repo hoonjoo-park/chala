@@ -1,0 +1,5 @@
+mixin contents(content)
+    a(href=`/content/${content._id}`).mixinContent
+        div.mixinThumb(style=`background-image:url(${content.thumbnail});background-size:cover;background-position:center;`)
+        div.mixinData
+            span #{content.contentTitle}
