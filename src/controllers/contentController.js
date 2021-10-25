@@ -37,6 +37,8 @@ export const getUpload = (req, res) => {
   return res.render('uploadContent', { pageTitle: 'Upload', localModal: false, cameraModal: false });
 };
 
+const isHeroku = process.env.NODE_ENV === 'production';
+
 export const postUpload = async (req, res) => {
   const {
     user: { _id },
@@ -46,8 +48,8 @@ export const postUpload = async (req, res) => {
   const newContent = await Content.create({
     contentTitle: contentName,
     contentDesc: description,
-    contentFile: contentFile[0].location,
-    thumbnail: thumbFile[0].location,
+    contentFile: isHeroku ? contentFile[0].location : contentFile[0].path,
+    thumbnail: isHeroku ? thumbFile[0].location : thumbFile[0].path,
     owner: _id,
   });
   const user = await User.findById(_id);

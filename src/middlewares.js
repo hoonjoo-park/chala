@@ -9,9 +9,16 @@ const s3 = new aws.S3({
   },
 });
 
-const multerUploader = multerS3({
+const isHeroku = process.env.NODE_ENV === 'production';
+
+const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: 'chalaa',
+  bucket: 'chalaa/images',
+  acl: 'public-read',
+});
+const s3ContentUploader = multerS3({
+  s3: s3,
+  bucket: 'chalaa/contents',
   acl: 'public-read',
 });
 
@@ -39,12 +46,12 @@ export const uploadProfileImgs = multer({
   limits: {
     fileSize: 3000000,
   },
-  storage: multerUploader,
+  storage: isHeroku ? s3ImageUploader : undefined,
 });
 export const uploadContents = multer({
   dest: 'uploads/contents',
   limits: {
     fileSize: 10000000,
   },
-  storage: multerUploader,
+  storage: isHeroku ? s3ContentUploader : undefined,
 });

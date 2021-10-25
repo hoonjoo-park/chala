@@ -12,7 +12,7 @@
     "build:server": "babel src -d build",
     "build:assets": "webpack --mode=production",
     "dev": "nodemon --exec babel-node src/server.js",
-    "assets": "webpack --config webpack.config.js --mode=develope -w"
+    "assets": "webpack --config webpack.config.js -w"
   },
   "author": "HoonJoo Park",
   "license": "ISC",
