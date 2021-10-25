@@ -80,18 +80,18 @@ export const postUserEdit = async (req, res) => {
       return res.status(400).render('editProfile', { errorMsg: '이미 존재하는 Email입니다.' });
     }
   }
+  const isHeroku = process.env.NODE_ENV === 'production';
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
       userName,
       userID,
       email,
-      profileImg: file ? file.location : profileImg,
+      profileImg: file ? (isHeroku ? file.location : file.path) : profileImg,
     },
     { new: true }
   );
   req.session.user = updatedUser;
-  console.log(req.session.user);
   return res.redirect('/user/edit');
 };
 
