@@ -46,8 +46,8 @@ export const postUpload = async (req, res) => {
   const newContent = await Content.create({
     contentTitle: contentName,
     contentDesc: description,
-    contentFile: contentFile[0].path,
-    thumbnail: thumbFile[0].path,
+    contentFile: contentFile[0].location,
+    thumbnail: thumbFile[0].location,
     owner: _id,
   });
   const user = await User.findById(_id);

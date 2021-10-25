@@ -12,7 +12,7 @@
     "build:server": "babel src -d build",
     "build:assets": "webpack --mode=production",
     "dev": "nodemon --exec babel-node src/server.js",
-    "assets": "webpack --config webpack.config.js -w"
+    "assets": "webpack --config webpack.config.js --mode=develope -w"
   },
   "author": "HoonJoo Park",
   "license": "ISC",
@@ -23,6 +23,7 @@
   "dependencies": {
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
+    "aws-sdk": "^2.1013.0",
     "babel-loader": "^8.2.3",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
@@ -32,6 +33,7 @@
     "mongoose": "^6.0.11",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
+    "multer-s3": "^2.10.0",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
     "regenerator-runtime": "^0.13.9",

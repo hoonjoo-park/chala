@@ -11,7 +11,7 @@ div.navBox
         if loggedIn
             if loggedInUser.profileImg
                 li#navProfile
-                    img(src="/"+loggedInUser.profileImg, alt="profile", width="35",height="35")
+                    img(src=loggedInUser.profileImg, alt="profile", width="35",height="35")
                     ul.profileSub
                         li #{loggedInUser.userName}
                         li 

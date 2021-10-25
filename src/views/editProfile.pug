@@ -8,7 +8,7 @@ block contents
             h1 프로필 수정
         hr
         if loggedInUser.profileImg 
-            img(src="/"+loggedInUser.profileImg, alt="profile", width="50", height="50")
+            img(src=loggedInUser.profileImg, alt="profile", width="50", height="50")
         else
             i.fas.fa-user-circle
         form(method="post", enctype="multipart/form-data")

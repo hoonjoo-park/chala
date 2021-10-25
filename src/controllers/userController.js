@@ -80,14 +80,13 @@ export const postUserEdit = async (req, res) => {
       return res.status(400).render('editProfile', { errorMsg: '이미 존재하는 Email입니다.' });
     }
   }
-  console.log(file);
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
       userName,
       userID,
       email,
-      profileImg: file ? file.path : profileImg,
+      profileImg: file ? file.location : profileImg,
     },
     { new: true }
   );
