@@ -1,6 +1,6 @@
 import 'regenerator-runtime';
 import '../scss/styles.scss';
-const profileCircle = document.getElementById('navProfile');
+const profileCircle = document.querySelector('.navProfile');
 const fileLabel = document.getElementById('fileLabel');
 const thumbLabel = document.getElementById('thumbLabel');
 const contentFile = document.getElementById('contentFile');
