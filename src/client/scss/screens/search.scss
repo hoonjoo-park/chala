@@ -15,6 +15,17 @@
     background-color: #374251;
   }
 }
+#search {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #d1d1d1d1;
+  font-size: 1.1rem;
+  color: #ffffff;
+  width: 70%;
+  height: 2.5rem;
+  margin: 1rem 0;
+}
 .gridBox {
   display: grid;
   grid-template-columns: repeat(4, minmax(18%, auto));
