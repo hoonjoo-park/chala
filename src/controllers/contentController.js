@@ -24,7 +24,7 @@ export const home = async (req, res) => {
 };
 
 export const getUpload = (req, res) => {
-  res.header('Cross-Origin-Resource-Policy', 'cross-origin');
+  res.header('Cross-Origin-Resource-Policy', 'same-site');
   res.header('Cross-Origin-Embedder-Policy', 'require-corp');
   res.header('Cross-Origin-Opener-Policy', 'same-origin');
   const {
