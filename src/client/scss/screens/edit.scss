@@ -22,7 +22,7 @@ form {
   margin: auto;
   width: 80%;
   height: 100%;
-  & > input[type='text'] {
+  & > #editName {
     outline: none;
     background-color: transparent;
     border: none;
@@ -47,11 +47,6 @@ form {
     font-size: 1rem;
     flex-shrink: 0;
     margin-bottom: 2rem;
-  }
-  & > input[type='file'] {
-    flex-shrink: 0;
-    margin-bottom: 2rem;
-    outline: none;
   }
   & > input[type='submit'] {
     width: 70%;

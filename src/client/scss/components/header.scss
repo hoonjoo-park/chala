@@ -50,6 +50,9 @@
   & > img {
     border-radius: 50%;
   }
+  & > i {
+    font-size: 2rem;
+  }
   & > .profileSub {
     max-height: 0;
     overflow: hidden;
@@ -59,7 +62,7 @@
     width: 12rem;
     left: 50%;
     top: 100%;
-    transform: translateX(-60%);
+    transform: translateX(-47%);
     background-color: #272727;
     transition: all 0.5s;
     & > li {

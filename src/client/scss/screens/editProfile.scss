@@ -16,11 +16,18 @@
     border: none;
     background-color: #374251;
   }
-  & > img {
+  & > img,
+  i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
     width: 6rem;
     height: 6rem;
     border-radius: 50%;
+  }
+  & > i {
+    font-size: 4rem;
   }
   & > form {
     display: flex;
@@ -28,7 +35,7 @@
     align-items: center;
     justify-content: space-evenly;
     height: 70%;
-    & > input:not([type='submit']) {
+    & > input {
       outline: none;
       background-color: transparent;
       border: none;
@@ -37,8 +44,9 @@
       font-size: 1.1rem;
       width: 70%;
       height: 2.5rem;
+      margin: 1rem 0;
     }
-    & > input[type='submit'] {
+    & > .submitBtn {
       width: 70%;
       height: 2.5rem;
       border: none;
@@ -56,7 +64,7 @@
   display: flex;
   justify-content: space-evenly;
   width: 70%;
-  margin: 0 auto;
+  margin: 1rem auto;
   & > a {
     display: flex;
     align-items: center;
