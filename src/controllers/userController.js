@@ -147,6 +147,7 @@ export const startGithubLogin = (req, res) => {
   const params = new URLSearchParams(config).toString();
   return res.redirect(`${baseURL}?${params}`);
 };
+
 export const finishGithubLogin = async (req, res) => {
   const baseURL = 'https://github.com/login/oauth/access_token';
   const config = {
@@ -176,4 +177,18 @@ export const finishGithubLogin = async (req, res) => {
   } else {
     return res.redirect('/login');
   }
+};
+
+export const see = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate({
+    path: 'contents',
+    populate: {
+      path: 'owner',
+      model: 'User',
+    },
+  });
+  return res.render('user/profile', {
+    user,
+  });
 };
