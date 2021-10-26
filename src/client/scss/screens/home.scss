@@ -113,7 +113,10 @@
 }
 
 .nothing {
-  margin-top: 20%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   font-size: 1.8rem;
   font-weight: 900;
@@ -122,9 +125,11 @@
 .gridBox {
   display: grid;
   grid-template-columns: repeat(4, minmax(18%, auto));
+  justify-items: center;
   gap: 3rem 2rem;
   grid-template-rows: 1fr 1fr;
   margin: 3rem 0;
+  max-width: 1600px;
   min-height: 70vh;
   height: 100%;
 }

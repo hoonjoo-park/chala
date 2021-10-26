@@ -1,6 +1,9 @@
 .mixinContent {
   display: block;
-  height: 20rem;
+  max-width: 350px;
+  height: 350px;
+  width: 18vw;
+  height: 18vw;
   & > .mixinThumb {
     border-radius: 5px;
     display: block;
@@ -10,6 +13,6 @@
   & > .mixinData {
     height: fit-content;
     text-align: center;
-    line-height: 250%;
+    margin-top: 1rem;
   }
 }
