@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   // margin: auto;
-  min-height: 10vh;
-  height: 6rem;
+  min-height: 11vh;
+  height: 7rem;
   // width: 85vw;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.34);
 }
@@ -38,7 +38,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      text-align: center;
+      width: fit-content;
       height: 100%;
     }
   }
@@ -94,4 +95,11 @@
   max-height: 20rem;
   padding: 1em;
   border: 1px solid #eaeaea;
+}
+
+#verticalHR {
+  width: 1px;
+  height: 15px;
+  margin: 0 0.5rem;
+  background-color: #eaeaea;
 }

@@ -5,7 +5,10 @@ block contents
         if loggedIn
             div#homeBanner
                 div.leftBanner
-                    img(src=loggedInUser.profileImg, alt="profile", width="95",height="95")
+                    if loggedInUser.profileImg
+                        img(src=loggedInUser.profileImg, alt="profile", width="95",height="95")
+                    else 
+                        i.fas.fa-user-circle
                 div.rightBanner
                     h1 #{loggedInUser.userName}
                     p This blank is for description of users themselves.

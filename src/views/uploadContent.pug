@@ -16,7 +16,7 @@ block contents
             div#modalBox
                 h1 파일 업로드
                 a(href="/content/upload")
-                form(method="POST" enctype="multipart/form-data") 
+                form(method="POST" enctype="multipart/form-data", id="uploadContentForm") 
                     input(type="text", name="contentName", placeholder="제목을 입력해주세요")
                     textarea(name="description", placeholder="컨텐츠에 대한 설명을 입력해주세요")
                     div.fileBox

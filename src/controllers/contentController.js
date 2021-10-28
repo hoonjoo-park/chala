@@ -147,3 +147,47 @@ export const getSearch = async (req, res) => {
   }
   return res.render('search', { pageTitle: '검색', contents });
 };
+
+export const postComment = async (req, res) => {
+  const {
+    body: { text },
+    session: { user },
+    params: { id },
+  } = req;
+  const content = await Content.findById(id);
+  if (!content) {
+    return res.sendStatus(404);
+  }
+  const comment = await Comment.create({
+    text,
+    ownerID: user._id,
+    ownerName: user.userName,
+    content: id,
+  });
+  content.comments.push(comment._id);
+  content.save();
+  return res.status(201).json({
+    newCommentId: comment._id,
+    newCommentOwnerID: comment.ownerID,
+    user,
+  });
+};
+
+export const deleteComment = async (req, res) => {
+  const {
+    body: { newCommentID, ownerID },
+    session: { user },
+    params: { id },
+  } = req;
+  const content = await Content.findById(id);
+  if (String(user._id) !== String(ownerID)) {
+    return res.sendStatus(404);
+  }
+  await content.comments.splice(
+    content.comments.indexOf(String(newCommentID)),
+    1
+  );
+  await Comment.findByIdAndDelete(newCommentID);
+  content.save();
+  return res.sendStatus(201);
+};

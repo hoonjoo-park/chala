@@ -11,7 +11,10 @@ div.navBox
         if loggedIn
             if loggedInUser.profileImg
                 li.navProfile
-                    img(src=loggedInUser.profileImg, crossorigin, alt="profile", width="35",height="35")
+                    if loggedInUser.profileImg
+                        img(src=loggedInUser.profileImg, crossorigin, alt="profile", width="35",height="35")
+                    else
+                        i.fas.fa-user-circle
                     ul.profileSub
                         li #{loggedInUser.userName}
                         li 
@@ -31,5 +34,6 @@ div.navBox
         else
             li 
                 a(href="/login") 로그인
+                span#verticalHR
                 a(href="/join") 회원가입
         

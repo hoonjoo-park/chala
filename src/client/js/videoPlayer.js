@@ -32,7 +32,9 @@ const handleMuteClick = (e) => {
   } else {
     video.muted = true;
   }
-  muteBtnIcon.classList = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+  muteBtnIcon.classList = video.muted
+    ? 'fas fa-volume-mute'
+    : 'fas fa-volume-up';
   volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
@@ -48,7 +50,8 @@ const handleVolumeChange = (event) => {
   video.volume = value;
 };
 
-const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(14, 5);
+const formatTime = (seconds) =>
+  new Date(seconds * 1000).toISOString().substr(14, 5);
 
 const handleLoadedMetadata = () => {
   totalTime.innerText = formatTime(Math.floor(video.duration));

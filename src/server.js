@@ -9,6 +9,7 @@ import MongoStore from 'connect-mongo';
 import globalRouter from './routers/globalRouter';
 import userRouter from './routers/userRouter';
 import contentRouter from './routers/contentRouter';
+import apiRouter from './routers/apiRouter';
 import { localsMiddleware } from './middlewares';
 
 const app = express();
@@ -39,6 +40,7 @@ app.use('/static', express.static('assets'));
 app.use('/', globalRouter);
 app.use('/user', userRouter);
 app.use('/content', contentRouter);
+app.use('/api', apiRouter);
 
 app.listen(PORT, () => {
   console.log(`💡 Listening on http://localhost:${PORT} 💡`);

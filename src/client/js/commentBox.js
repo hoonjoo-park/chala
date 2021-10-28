@@ -1,45 +1,71 @@
+const commentForm = document.getElementById('commentForm');
+const commentUl = document.getElementById('commentUl');
 const videoContainer = document.getElementById('videoContainer');
-const form = document.getElementById('commentForm');
+const deleteComment = document.querySelectorAll('.deleteComment');
 
-const addComment = (text, id) => {
-  const videoComments = document.querySelector('.video__comments ul');
+const appendComment = (text, newCommentId, user, newCommentOwnerID) => {
   const newComment = document.createElement('li');
-  newComment.dataset.id = id;
-  newComment.className = 'video__comment';
-  const icon = document.createElement('i');
-  icon.className = 'fas fa-comment';
-  const span = document.createElement('span');
-  span.innerText = ` ${text}`;
-  const span2 = document.createElement('span');
-  span2.innerText = '❌';
-  newComment.appendChild(icon);
-  newComment.appendChild(span);
-  newComment.appendChild(span2);
-  videoComments.prepend(newComment);
+  newComment.dataset.id = newCommentId;
+  newComment.dataset.ownerid = newCommentOwnerID;
+  const userImg = document.createElement('img');
+  userImg.src = user.profileImg;
+  const writeBox = document.createElement('div');
+  newComment.appendChild(userImg);
+  newComment.appendChild(writeBox);
+  const userName = document.createElement('span');
+  const commentText = document.createElement('p');
+  const deleteBtn = document.createElement('span');
+  deleteBtn.className = 'deleteComment';
+  deleteBtn.innerText = '삭제';
+  userName.innerText = user.userName;
+  commentText.innerText = text;
+  newComment.appendChild(deleteBtn);
+  writeBox.appendChild(userName);
+  writeBox.appendChild(commentText);
+  commentUl.prepend(newComment);
+
+  const deleteComment = document.querySelectorAll('.deleteComment');
+  deleteComment.forEach((btn) => btn.addEventListener('click', handleDelete));
 };
 
-const handleSubmit = async (event) => {
-  event.preventDefault();
-  const textarea = form.querySelector('textarea');
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const textarea = commentForm.querySelector('#commentTextarea');
   const text = textarea.value;
-  const videoId = videoContainer.dataset.id;
   if (text === '') {
     return;
   }
-  const response = await fetch(`/api/videos/${videoId}/comment`, {
+  const videoID = videoContainer.dataset.id;
+  const response = await fetch(`/api/content/${videoID}/comment`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ text }),
   });
   if (response.status === 201) {
     textarea.value = '';
-    const { newCommentId } = await response.json();
-    addComment(text, newCommentId);
+    const resData = await response.json();
+    appendComment(
+      text,
+      resData.newCommentId,
+      resData.user,
+      resData.newCommentOwnerID
+    );
   }
 };
 
-if (form) {
-  form.addEventListener('submit', handleSubmit);
-}
+const handleDelete = async (e) => {
+  const newCommentID = e.target.parentNode.dataset.id;
+  const ownerID = e.target.parentNode.dataset.ownerid;
+  console.log(e.target.parentNode);
+  e.target.parentNode.remove();
+  const videoID = videoContainer.dataset.id;
+  await fetch(`/api/content/${videoID}/comment/delete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ newCommentID, ownerID }),
+  });
+  return;
+};
+
+commentForm.addEventListener('submit', handleSubmit);
+deleteComment.forEach((btn) => btn.addEventListener('click', handleDelete));

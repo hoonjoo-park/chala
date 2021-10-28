@@ -21,5 +21,9 @@ const handleThumbName = (e) => {
 
 profileCircle.addEventListener('mouseleave', closeSubMenu);
 profileCircle.addEventListener('mouseenter', openSubMenu);
-contentFile.addEventListener('change', handleFileName);
-thumbFile.addEventListener('change', handleThumbName);
+if (contentFile) {
+  contentFile.addEventListener('change', handleFileName);
+}
+if (thumbFile) {
+  thumbFile.addEventListener('change', handleThumbName);
+}

@@ -74,10 +74,14 @@
   align-items: center;
   justify-content: center;
   width: 25%;
-  & > img {
+  & > img,
+  i {
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
+  }
+  & > i {
+    font-size: 4.5rem;
   }
 }
 .rightBanner {
@@ -128,7 +132,7 @@
   justify-items: center;
   gap: 3rem 2rem;
   grid-template-rows: 1fr 1fr;
-  margin: 3rem 0;
+  margin: 4rem 0;
   max-width: 1600px;
   min-height: 70vh;
   height: 100%;
