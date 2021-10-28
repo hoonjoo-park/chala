@@ -1,21 +1,26 @@
-# chala
+# 찰나(Chala) 🍁
+찰나, 내 삶을 하이라이팅 하다.
+우리는 무심코 소중한 찰나의 순간들을 놓치며 바쁘게 살아갑니다.
+당연하게만 여겨왔던 놓치기 아쉬운 하루의 단편들을 찰나에 기록해보세요.
 
-우리는 모두 정말 간직하고 싶은 찰나의 순간들을 놓치며 산다. 하루의 놓치기 아쉬운 찰나의 순간들, 또는 영화 속 장면들 등을 찰나에 기록해보자 :)
+---
+### 개발 스택 💻
+백엔드
+  1. Node.JS
+  2. MongoDB
+  3. AWS S3
+  4. Webpack
+  5. ffmpeg
 
-### Router 투두리스트
-
-- [] Home
-- [] Join
-- [] Login
-- [] Find ID/PW
-- [] Edit-User
-- [] Delete-User
-- [] Upload Video
-- [] Watch Video
-- [] Edit Video
-- [] Delete Video
-- [] Search Video
-- [] Custom Video Player Controls
-- [] Write Comment
-- [] Delete Comment
-- [] Edit Comment
+프론트엔드
+  1. PUG
+  2. SCSS
+  3. Vanilla Javascript
+---
+### 구현 기능 🥑
+- 회원가입/로그인/로그아웃
+- 깃헙 OAuth => 소셜 로그인/회원가입
+- 프로필 수정 / 회원탈퇴 / 비밀번호 변경
+- 동영상 촬영 -> 썸네일 자동 저장 -> 업로드 기능
+- 동영상 검색 기능
+- 댓글 기능
