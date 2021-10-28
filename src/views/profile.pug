@@ -1,0 +1,19 @@
+extends base.pug
+include mixins/contents
+
+block contents
+    div#seeBanner
+        div.leftBanner
+            img(src=user.profileImg, alt="profile", width="95",height="95")
+        div.rightBanner
+            h1 #{user.userName}
+            p This blank is for description of users themselves.
+        if user._id === loggedInUser._id
+            div.buttonBox
+                a(href="/content/upload") 업로드
+    div.gridBox
+        if user.contents.length > 0
+            each content in user.contents
+                +contents(content)
+        else
+            h1.nothing 아직 등록된 찰나의 기록이 없습니다.

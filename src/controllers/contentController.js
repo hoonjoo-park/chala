@@ -31,11 +31,23 @@ export const getUpload = (req, res) => {
     query: { option },
   } = req;
   if (option === 'local') {
-    return res.render('uploadContent', { pageTitle: 'Upload', localModal: true, cameraModal: false });
+    return res.render('uploadContent', {
+      pageTitle: 'Upload',
+      localModal: true,
+      cameraModal: false,
+    });
   } else if (option === 'take') {
-    return res.render('uploadContent', { pageTitle: 'Upload', localModal: false, cameraModal: true });
+    return res.render('uploadContent', {
+      pageTitle: 'Upload',
+      localModal: false,
+      cameraModal: true,
+    });
   }
-  return res.render('uploadContent', { pageTitle: 'Upload', localModal: false, cameraModal: false });
+  return res.render('uploadContent', {
+    pageTitle: 'Upload',
+    localModal: false,
+    cameraModal: false,
+  });
 };
 
 const isHeroku = process.env.NODE_ENV === 'production';
@@ -56,16 +68,22 @@ export const postUpload = async (req, res) => {
   const user = await User.findById(_id);
   user.contents.push(newContent._id);
   user.save();
-  return res.render('uploadContent', { pageTitle: 'Upload', localModal: false, cameraModal: false });
+  return res.render('uploadContent', {
+    pageTitle: 'Upload',
+    localModal: false,
+    cameraModal: false,
+  });
 };
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const content = await Content.findById(id).populate('owner').populate('comments');
+  const content = await Content.findById(id)
+    .populate('owner')
+    .populate('comments');
   if (!content) {
     return res.status(404).rendirect('/');
   }
-  return res.render('watch', { content });
+  return res.render('watch', { pageTitle: content.contentTitle, content });
 };
 
 export const getEdit = async (req, res) => {
@@ -81,7 +99,7 @@ export const getEdit = async (req, res) => {
     req.flash('error', 'Not authorized');
     return res.status(403).redirect('/');
   }
-  return res.render('edit', { pageTitle: `Edit: ${content.title}`, content });
+  return res.render('edit', { pageTitle: '컨텐츠 수정', content });
 };
 
 export const postEdit = async (req, res) => {
@@ -127,5 +145,5 @@ export const getSearch = async (req, res) => {
       },
     }).populate('owner');
   }
-  return res.render('search', { contents });
+  return res.render('search', { pageTitle: '검색', contents });
 };

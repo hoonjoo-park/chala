@@ -9,11 +9,17 @@ export const getJoin = (req, res) => {
 export const postJoin = async (req, res) => {
   const { userName, userID, password, password2, email } = req.body;
   if (password !== password2) {
-    return res.status(400).render('join', { pageTitle: '회원가입', errorMsg: '입력하신 비밀번호가 서로 일치하지 않습니다.' });
+    return res.status(400).render('join', {
+      pageTitle: '회원가입',
+      errorMsg: '입력하신 비밀번호가 서로 일치하지 않습니다.',
+    });
   }
   const exists = await User.exists({ $or: [{ userID }, { email }] });
   if (exists) {
-    return res.status(400).render('join', { pageTitle: '회원가입', errorMsg: '이미 존재하는 ID 또는 Email입니다.' });
+    return res.status(400).render('join', {
+      pageTitle: '회원가입',
+      errorMsg: '이미 존재하는 ID 또는 Email입니다.',
+    });
   }
   try {
     await User.create({
@@ -24,7 +30,9 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect('/login');
   } catch (error) {
-    return res.status(400).render('join', { pageTitle: '회원가입', errorMsg: error._message });
+    return res
+      .status(400)
+      .render('join', { pageTitle: '회원가입', errorMsg: error._message });
   }
 };
 
@@ -36,11 +44,17 @@ export const postLogin = async (req, res) => {
   const { userID, password } = req.body;
   const user = await User.findOne({ userID });
   if (!user) {
-    return res.render('login', { pageTitle: '로그인', errorMsg: '존재하지 않는 아이디입니다.' });
+    return res.render('login', {
+      pageTitle: '로그인',
+      errorMsg: '존재하지 않는 아이디입니다.',
+    });
   }
   const passwordCheck = await bcrypt.compare(password, user.password);
   if (!passwordCheck) {
-    return res.render('login', { pageTitle: '로그인', errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요' });
+    return res.render('login', {
+      pageTitle: '로그인',
+      errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
+    });
   }
   req.session.loggedIn = true;
   req.session.user = user;
@@ -53,7 +67,7 @@ export const logout = (req, res) => {
 };
 
 export const getUserEdit = (req, res) => {
-  res.render('editProfile');
+  res.render('editProfile', { pageTitle: '프로필 수정' });
 };
 
 export const postUserEdit = async (req, res) => {
@@ -69,15 +83,21 @@ export const postUserEdit = async (req, res) => {
   const idExists = await User.exists({ userID });
   const pwCheck = await bcrypt.compare(password, user.password);
   if (!pwCheck) {
-    return res.status(400).render('editProfile', { errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요' });
+    return res.status(400).render('editProfile', {
+      errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
+    });
   }
   if (userID !== req.session.user.userID) {
     if (idExists) {
-      return res.status(400).render('editProfile', { errorMsg: '이미 존재하는 ID입니다.' });
+      return res
+        .status(400)
+        .render('editProfile', { errorMsg: '이미 존재하는 ID입니다.' });
     }
   } else if (email !== req.session.user.email) {
     if (emailExists) {
-      return res.status(400).render('editProfile', { errorMsg: '이미 존재하는 Email입니다.' });
+      return res
+        .status(400)
+        .render('editProfile', { errorMsg: '이미 존재하는 Email입니다.' });
     }
   }
   const isHeroku = process.env.NODE_ENV === 'production';
@@ -96,7 +116,7 @@ export const postUserEdit = async (req, res) => {
 };
 
 export const getPwChange = (req, res) => {
-  return res.render('pwChange');
+  return res.render('pwChange', { pageTitle: '비밀번호 변경' });
 };
 export const postPwChange = async (req, res) => {
   const { password, newPassword, newPassword2 } = req.body;
@@ -108,10 +128,14 @@ export const postPwChange = async (req, res) => {
   const user = await User.findById(_id);
   const pwCheck = await bcrypt.compare(password, user.password);
   if (!pwCheck) {
-    return res.status(400).render('pwChange', { errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요' });
+    return res.status(400).render('pwChange', {
+      errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
+    });
   }
   if (newPassword !== newPassword2) {
-    return res.status(400).render('pwChange', { errorMsg: '입력하신 비밀번호가 서로 일치하지 않습니다.' });
+    return res.status(400).render('pwChange', {
+      errorMsg: '입력하신 비밀번호가 서로 일치하지 않습니다.',
+    });
   }
   user.password = newPassword;
   await user.save();
@@ -119,7 +143,7 @@ export const postPwChange = async (req, res) => {
 };
 
 export const getWithdraw = (req, res) => {
-  return res.render('withdraw');
+  return res.render('withdraw', { pageTitle: '회원탈퇴' });
 };
 export const postWithdraw = async (req, res) => {
   const { userID, password } = req.body;
@@ -131,7 +155,9 @@ export const postWithdraw = async (req, res) => {
   const user = await User.findOne({ userID });
   const pwCheck = await bcrypt.compare(password, user.password);
   if (!pwCheck) {
-    return res.status(400).render('withdraw', { errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요' });
+    return res.status(400).render('withdraw', {
+      errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
+    });
   }
   await User.deleteOne({ userID });
   return res.redirect('/user/logout');
@@ -156,13 +182,26 @@ export const finishGithubLogin = async (req, res) => {
     code: req.query.code,
   };
   const params = new URLSearchParams(config).toString();
-  const data = await fetch(`${baseURL}?${params}`, { method: 'POST', headers: { Accept: 'application/json' } });
+  const data = await fetch(`${baseURL}?${params}`, {
+    method: 'POST',
+    headers: { Accept: 'application/json' },
+  });
   const json = await data.json();
   if ('access_token' in json) {
     const { access_token } = json;
-    const userRequest = await (await fetch('https://api.github.com/user', { headers: { Authorization: `token ${access_token}` } })).json();
-    const emailData = await (await fetch('https://api.github.com/user/emails', { headers: { Authorization: `token ${access_token}` } })).json();
-    const emailObj = emailData.find((email) => email.primary === true && email.verified === true);
+    const userRequest = await (
+      await fetch('https://api.github.com/user', {
+        headers: { Authorization: `token ${access_token}` },
+      })
+    ).json();
+    const emailData = await (
+      await fetch('https://api.github.com/user/emails', {
+        headers: { Authorization: `token ${access_token}` },
+      })
+    ).json();
+    const emailObj = emailData.find(
+      (email) => email.primary === true && email.verified === true
+    );
     if (!emailObj) {
       return res.redirect('/login');
     }
@@ -172,7 +211,11 @@ export const finishGithubLogin = async (req, res) => {
       req.session.user = existingUser;
       return res.redirect('/');
     } else {
-      return res.render('join', { errorMsg: '소셜 계정과 일치하는 회원 정보가 없습니다. 새로 가입해주세요.', socialJoin: emailObj.email });
+      return res.render('join', {
+        errorMsg:
+          '소셜 계정과 일치하는 회원 정보가 없습니다. 새로 가입해주세요.',
+        socialJoin: emailObj.email,
+      });
     }
   } else {
     return res.redirect('/login');
@@ -188,7 +231,9 @@ export const see = async (req, res) => {
       model: 'User',
     },
   });
-  return res.render('user/profile', {
+  console.log(user);
+  return res.render('profile', {
+    pageTitle: user.userName,
     user,
   });
 };

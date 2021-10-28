@@ -24,7 +24,7 @@ block contents
         p.video__title=content.contentTitle
         p.video__desc=content.contentDesc
         small.video__owner 작성자  
-            a(href=`/users/${content.owner._id}`)=content.owner.userName
+            a(href=`/user/${content.owner._id}`)=content.owner.userName
         if String(content.owner._id) === String(loggedInUser._id)
             div#editBox
                 a(href=`${content.id}/edit`, id="editVideo") 수정
