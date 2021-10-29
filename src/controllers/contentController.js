@@ -96,7 +96,7 @@ export const getEdit = async (req, res) => {
     return res.status(404).rendirect('/');
   }
   if (String(content.owner) !== String(_id)) {
-    req.flash('error', 'Not authorized');
+    req.flash('error', '잘못된 접근입니다');
     return res.status(403).redirect('/');
   }
   return res.render('edit', { pageTitle: '컨텐츠 수정', content });
@@ -110,6 +110,7 @@ export const postEdit = async (req, res) => {
   const { contentTitle, contentDesc } = req.body;
   const content = await Content.findById(id);
   if (String(content.owner) !== String(_id)) {
+    req.flash('error', '잘못된 접근입니다');
     return res.status(403).redirect('/');
   }
   await Content.findByIdAndUpdate(id, {
@@ -129,6 +130,7 @@ export const deleteContent = async (req, res) => {
     return res.status(404).rendirect('/');
   }
   if (String(content.owner) !== String(_id)) {
+    req.flash('error', '잘못된 접근입니다');
     return res.status(403).redirect('/');
   }
   await Content.findByIdAndDelete(id);

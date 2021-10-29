@@ -42,3 +42,30 @@ body {
   height: 100%;
   margin: auto;
 }
+.message {
+  position: absolute;
+  padding: 1em 2em;
+  top: 2%;
+  left: 45%;
+  border-radius: 1000px;
+  font-weight: 700;
+  animation: slide-bottom 4s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  &.message.error {
+    background-color: #e84545;
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(-150%);
+  }
+  15% {
+    transform: translateY(3%);
+  }
+  95% {
+    transform: translateY(3%);
+  }
+  100% {
+    transform: translateY(-150%);
+  }
+}

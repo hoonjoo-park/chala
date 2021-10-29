@@ -6,7 +6,7 @@ block contents
         hr
         if errorMsg
             h3 #{errorMsg}
-        form(method="post")
+        form(method="post", id="pwChangeForm")
             input(type="password", name="password" placeholder="현재 비밀번호를 입력해주세요")
             input(type="password", name="newPassword" placeholder="새로운 비밀번호를 입력해주세요")
             input(type="password", name="newPassword2" placeholder="비밀번호를 다시 입력해주세요")

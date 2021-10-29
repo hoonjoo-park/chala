@@ -107,7 +107,8 @@
     border-radius: 50%;
     background-color: #f38181;
   }
-  & > #uploadContentForm {
+  & > #uploadContentForm,
+  #cameraForm {
     display: flex;
     flex-direction: column;
     align-items: center;

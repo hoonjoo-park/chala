@@ -1,3 +1,5 @@
+include mixins/messages.pug
+
 doctype html
 html(lang="ko")
     head
@@ -12,6 +14,8 @@ html(lang="ko")
         link(rel="shortcut icon", href="https://chalaa.s3.amazonaws.com/images/maple.png", type="image/x-icon", crossorigin)
         title #{pageTitle}  |  Chala
     body 
+        if messages.error
+            +messages("error", messages.error)
         include partials/header.pug
         div.mainBox
             block contents

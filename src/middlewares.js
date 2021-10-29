@@ -32,13 +32,19 @@ export const localsMiddleware = (req, res, next) => {
 export const doubleCheck = (req, res, next) => {
   if (req.session.loggedIn) {
     return next();
-  } else res.redirect('/login');
+  } else {
+    req.flash('error', '잘못된 접근입니다');
+    return res.redirect('/login');
+  }
 };
 
 export const publicOnly = (req, res, next) => {
   if (!req.session.loggedIn) {
     return next();
-  } else res.redirect('/');
+  } else {
+    req.flash('error', '잘못된 접근입니다');
+    res.redirect('/');
+  }
 };
 
 export const uploadProfileImgs = multer({

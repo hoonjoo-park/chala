@@ -37,7 +37,7 @@ block contents
                 div#videoBox
                     video(src="/" controls, id="videoPreview") 
                     button#shootBtn 촬영하기
-                form(method="POST" enctype="multipart/form-data")
+                form(method="POST" enctype="multipart/form-data", id="cameraForm")
                     div.fileBox
                         div
                             input(type="text", disabled=true, value="컨텐츠", id="fileLabel")

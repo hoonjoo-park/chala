@@ -9,16 +9,16 @@ export const getJoin = (req, res) => {
 export const postJoin = async (req, res) => {
   const { userName, userID, password, password2, email } = req.body;
   if (password !== password2) {
+    req.flash('error', '비밀번호가 서로 일치하지 않습니다');
     return res.status(400).render('join', {
       pageTitle: '회원가입',
-      errorMsg: '입력하신 비밀번호가 서로 일치하지 않습니다.',
     });
   }
   const exists = await User.exists({ $or: [{ userID }, { email }] });
-  if (exists) {
+  if (!exists) {
+    req.flash('error', '이미 존재하는 ID 또는 Email입니다');
     return res.status(400).render('join', {
       pageTitle: '회원가입',
-      errorMsg: '이미 존재하는 ID 또는 Email입니다.',
     });
   }
   try {
@@ -30,9 +30,8 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect('/login');
   } catch (error) {
-    return res
-      .status(400)
-      .render('join', { pageTitle: '회원가입', errorMsg: error._message });
+    req.flash('error', '잘못된 접근입니다');
+    return res.status(400).render('join', { pageTitle: '회원가입' });
   }
 };
 
@@ -44,16 +43,16 @@ export const postLogin = async (req, res) => {
   const { userID, password } = req.body;
   const user = await User.findOne({ userID });
   if (!user) {
+    req.flash('error', '존재하지 않는 아이디입니다');
     return res.render('login', {
       pageTitle: '로그인',
-      errorMsg: '존재하지 않는 아이디입니다.',
     });
   }
   const passwordCheck = await bcrypt.compare(password, user.password);
   if (!passwordCheck) {
+    req.flash('error', '비밀번호가 틀렸습니다');
     return res.render('login', {
       pageTitle: '로그인',
-      errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
     });
   }
   req.session.loggedIn = true;
@@ -83,21 +82,22 @@ export const postUserEdit = async (req, res) => {
   const idExists = await User.exists({ userID });
   const pwCheck = await bcrypt.compare(password, user.password);
   if (!pwCheck) {
-    return res.status(400).render('editProfile', {
-      errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
-    });
+    req.flash('error', '비밀번호가 틀렸습니다');
+    return res.status(400).render('editProfile', { pageTitle: '프로필 수정' });
   }
   if (userID !== req.session.user.userID) {
     if (idExists) {
+      req.flash('error', '이미 존재하는 ID 또는 Email입니다');
       return res
         .status(400)
-        .render('editProfile', { errorMsg: '이미 존재하는 ID입니다.' });
+        .render('editProfile', { pageTitle: '프로필 수정' });
     }
   } else if (email !== req.session.user.email) {
     if (emailExists) {
+      req.flash('error', '이미 존재하는 ID 또는 Email입니다');
       return res
         .status(400)
-        .render('editProfile', { errorMsg: '이미 존재하는 Email입니다.' });
+        .render('editProfile', { pageTitle: '프로필 수정' });
     }
   }
   const isHeroku = process.env.NODE_ENV === 'production';
@@ -128,11 +128,13 @@ export const postPwChange = async (req, res) => {
   const user = await User.findById(_id);
   const pwCheck = await bcrypt.compare(password, user.password);
   if (!pwCheck) {
+    req.flash('error', '비밀번호가 틀렸습니다');
     return res.status(400).render('pwChange', {
       errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
     });
   }
   if (newPassword !== newPassword2) {
+    req.flash('error', '비밀번호가 서로 일치하지 않습니다');
     return res.status(400).render('pwChange', {
       errorMsg: '입력하신 비밀번호가 서로 일치하지 않습니다.',
     });
@@ -155,6 +157,7 @@ export const postWithdraw = async (req, res) => {
   const user = await User.findOne({ userID });
   const pwCheck = await bcrypt.compare(password, user.password);
   if (!pwCheck) {
+    req.flash('error', '비밀번호가 틀렸습니다');
     return res.status(400).render('withdraw', {
       errorMsg: '비밀번호가 틀렸습니다. 다시 입력해주세요',
     });
@@ -211,9 +214,12 @@ export const finishGithubLogin = async (req, res) => {
       req.session.user = existingUser;
       return res.redirect('/');
     } else {
+      req.flash(
+        'error',
+        '소셜 계정과 일치하는 회원 정보가 없습니다. 새로 가입해주세요'
+      );
       return res.render('join', {
-        errorMsg:
-          '소셜 계정과 일치하는 회원 정보가 없습니다. 새로 가입해주세요.',
+        pageTitle: '회원가입',
         socialJoin: emailObj.email,
       });
     }
