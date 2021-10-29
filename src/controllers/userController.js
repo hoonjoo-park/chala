@@ -15,7 +15,7 @@ export const postJoin = async (req, res) => {
     });
   }
   const exists = await User.exists({ $or: [{ userID }, { email }] });
-  if (!exists) {
+  if (exists) {
     req.flash('error', '이미 존재하는 ID 또는 Email입니다');
     return res.status(400).render('join', {
       pageTitle: '회원가입',
