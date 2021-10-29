@@ -81,7 +81,10 @@
     border-radius: 50%;
   }
   & > i {
-    font-size: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5.5rem;
   }
 }
 .rightBanner {
