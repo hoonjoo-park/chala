@@ -16,12 +16,13 @@
     border: none;
     background-color: #374251;
   }
-  & > form {
+  & > #joinForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    width: 80%;
     height: 70%;
     & > input:not([type='submit']) {
       outline: none;
@@ -49,7 +50,7 @@
   }
 }
 .askLoginBox {
-  width: 50%;
+  width: 55%;
   margin: 0.5rem auto;
   & > span {
     margin-right: 1rem;

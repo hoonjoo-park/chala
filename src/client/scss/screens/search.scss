@@ -15,7 +15,15 @@
     background-color: #374251;
   }
 }
-#search {
+
+#searchForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#searchInput {
   outline: none;
   background-color: transparent;
   border: none;
@@ -24,8 +32,21 @@
   color: #ffffff;
   width: 70%;
   height: 2.5rem;
-  margin: 1rem 0;
+  margin: 2rem 0;
+  padding: 0 1em;
 }
+
+#searchBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5em;
+  width: 5rem;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: #62d2a2;
+  color: #ffffff;
+}
+
 .gridBox {
   display: grid;
   grid-template-columns: repeat(4, minmax(18%, auto));
@@ -34,4 +55,11 @@
   margin: 3rem 0;
   min-height: 70vh;
   height: 100%;
+}
+.emptyMessage {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: 700;
 }

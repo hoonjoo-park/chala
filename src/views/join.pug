@@ -6,7 +6,7 @@ block contents
         hr
         if errorMsg
             h3 #{errorMsg}
-        form(action="/join" method="POST") 
+        form(action="/join" method="POST", id="joinForm") 
             input(type="text", name="userName", placeholder="이름을 입력해주세요") 
             input(type="text", name="userID", placeholder="아이디를 입력해주세요")
             input(type="password", name="password", placeholder="비밀번호를 입력해주세요")

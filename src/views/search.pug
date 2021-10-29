@@ -2,12 +2,12 @@ extends base.pug
 include mixins/contents
 block contents
     div.searchBox
-        h1 검색
-        form(method="GET")
-            input(type="text", name="keyword", id="search", placeholder="검색어를 입력해주세요")
+        h1 컨텐츠 검색
+        form(method="GET", id="searchForm")
+            input(type="text", name="keyword", id="searchInput", placeholder="검색어를 입력해주세요")
             input(type="submit", value="검색", id="searchBtn")
     div.gridBox
         each content in contents
             +contents(content)
         else
-            span.empty__message No videos found
+            span.emptyMessage 일치하는 검색 결과가 없습니다

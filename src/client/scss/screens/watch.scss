@@ -1,9 +1,65 @@
+#videoContainer {
+  width: 60vw;
+  max-width: 1200px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 5rem;
+  video {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .videoControls {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    &.showing {
+      opacity: 1;
+    }
+    align-items: center;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    width: 95%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr auto;
+    gap: 10px;
+    justify-content: space-between;
+    background-color: #0f1117;
+    padding: 10px;
+    left: 0;
+    box-sizing: border-box;
+    .videoControls__play {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .videoControls__playBtn {
+        margin: 0px 15px;
+      }
+      .videoControls__time {
+        font-size: 12px;
+      }
+    }
+    .videoControls__volume {
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 10px;
+        i {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
 .video__data {
-  margin-top: 20px;
-  margin-bottom: 3rem;
+  margin: 20px auto 3rem auto;
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 60vw;
+  max-width: 1200px;
   & > .video__title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
@@ -21,6 +77,16 @@
     }
   }
 }
+
+#fullScreen {
+  & > i {
+    font-size: 1.3rem;
+    width: 2rem;
+    vertical-align: middle;
+    padding-top: 0.1em;
+  }
+}
+
 #editBox {
   display: flex;
   width: 30%;
@@ -45,7 +111,9 @@
 }
 
 #commentBox {
-  width: 80%;
+  width: 60vw;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 #commentForm {
   display: flex;
@@ -68,13 +136,13 @@
   }
   & > img,
   i {
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
     margin-right: 2%;
   }
   & > i {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 }
 #commentTextarea {
@@ -138,66 +206,4 @@
   font-size: 0.7rem;
   color: #f38181;
   cursor: pointer;
-}
-
-#videoContainer {
-  width: 100%;
-  position: relative;
-  margin-top: 5rem;
-  video {
-    width: 100%;
-    border-radius: 10px;
-  }
-  .videoControls {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    &.showing {
-      opacity: 1;
-    }
-    align-items: center;
-    border-radius: 10px;
-    position: absolute;
-    bottom: 10px;
-    width: 95%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr auto;
-    gap: 10px;
-    justify-content: space-between;
-    background-color: #0f1117;
-    padding: 10px;
-    left: 0;
-    box-sizing: border-box;
-    .videoControls__play {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      .videoControls__playBtn {
-        margin: 0px 15px;
-      }
-      .videoControls__time {
-        font-size: 12px;
-      }
-    }
-    .videoControls__volume {
-      display: flex;
-      align-items: center;
-      span {
-        margin-left: 10px;
-        i {
-          font-size: 20px;
-        }
-      }
-    }
-  }
-}
-#fullScreen {
-  & > i {
-    font-size: 1.3rem;
-    width: 2rem;
-    vertical-align: middle;
-    padding-top: 0.1em;
-  }
 }
