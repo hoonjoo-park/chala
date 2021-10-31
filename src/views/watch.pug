@@ -49,9 +49,9 @@ block contents
                             else
                                 i.fas.fa-user-circle
                             div
-                                span #{comment.ownerName}
+                                span #{comment.owner.userName}
                                 p #{comment.text}
-                            if String(comment.ownerID) === String(loggedInUser._id)
+                            if String(comment.owner.userID) === String(loggedInUser._id)
                                 span.deleteComment 삭제
 
 block scripts
