@@ -80,6 +80,7 @@ export const watch = async (req, res) => {
   const content = await Content.findById(id)
     .populate('owner')
     .populate('comments');
+  console.log(content);
   if (!content) {
     return res.status(404).rendirect('/');
   }
@@ -162,8 +163,7 @@ export const postComment = async (req, res) => {
   }
   const comment = await Comment.create({
     text,
-    ownerID: user._id,
-    ownerName: user.userName,
+    owner: user,
     content: id,
   });
   content.comments.push(comment._id);

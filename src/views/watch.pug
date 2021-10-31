@@ -44,8 +44,8 @@ block contents
                 else    
                     each comment in content.comments.reverse()
                         li(data-id=comment.id, data-ownerid=comment.ownerID)
-                            if loggedInUser.profileImg
-                                img(src=loggedInUser.profileImg alt="user") 
+                            if comment.owner.profileImg
+                                img(src=comment.owner.profileImg alt="user") 
                             else
                                 i.fas.fa-user-circle
                             div
